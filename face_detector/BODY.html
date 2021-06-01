@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WORKOUT</title>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        
+    </head>
+    <body>
+        <div id="header"></div>
+        <div id="homeoptions_"></div>
+        <script type="text/babel">
+        
+        class Header extends React.Component {
+        constructor(props, context) {
+        super(props, context);
+        this.state = {
+            page: 'home'
+        };
+        this.changeBackgroundHomeEnter = this.changeBackgroundHomeEnter.bind(this);
+        this.changeBackgroundHomeLeave = this.changeBackgroundHomeLeave.bind(this);
+        this.changeBackgroundAboutEnter = this.changeBackgroundAboutEnter.bind(this);
+        this.changeBackgroundAboutLeave = this.changeBackgroundAboutLeave.bind(this);
+        this.changeBackgroundProfileLeave = this.changeBackgroundProfileLeave.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.state.page == 'home') {
+            document.querySelector('#header_home').style.background = '#00390D';
+            document.querySelector('#header_home').style.border = '#00390D';
+        }
+        else if (this.state.page == 'about') {
+            document.querySelector('#header_about').style.background = '#00390D';
+            document.querySelector('#header_about').style.border = '#00390D';
+        }
+        else
+            document.querySelector('#header_profile').style.border = "7px solid #00390D";
+    }
+
+    changeBackgroundHomeEnter() {
+        document.querySelector('#header_home').style.background = '#00390D';
+        document.querySelector('#header_home').style.border = '#00390D';
+    }
+
+    changeBackgroundHomeLeave() {
+        if (this.state.page != 'home') {
+            document.querySelector('#header_home').style.background = '#1D7D26';
+            document.querySelector('#header_gome').style.border = '#1D7D26';
+        }
+    }
+
+    changeBackgroundAboutEnter() {
+        document.querySelector('#header_about').style.background = '#00390D';
+        document.querySelector('#header_about').style.border = '#00390D';
+    }
+
+    changeBackgroundAboutLeave() {
+        if (this.state.page != 'about') {
+            document.querySelector('#header_about').style.background = '#1D7D26';
+            document.querySelector('#header_about').style.border = '#1D7D26';
+        }
+    }
+
+    changeBackgroundProfileLeave() {
+        if (this.state.page != 'profile')
+            document.querySelector('#header_profile').style.border = "5px solid #000000";
+    }
+
+    render() {
+        return (
+            <div id="header_bg">
+                <p id="header_name">WebNameHere</p>
+
+                <button
+                    className="header_button"
+                    id="header_home"
+                    onMouseEnter={this.changeBackgroundHomeEnter}
+                    onMouseLeave={this.changeBackgroundHomeLeave}>
+                    <p className="header_text" id="header_home_text">Home</p>
+                </button>
+
+                <button
+                    className="header_button"
+                    id="header_about"
+                    onMouseEnter={this.changeBackgroundAboutEnter}
+                    onMouseLeave={this.changeBackgroundAboutLeave}>
+                    <p className="header_text" id="header_about_text">About</p>
+                </button>
+
+                <div id="profile">
+                    <div
+                        id="header_profile"
+                        onMouseEnter={() => document.querySelector('#header_profile').style.border = "7px solid #00390D"}
+                        onMouseLeave={this.changeBackgroundProfileLeave}>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <Header />,
+    document.querySelector('#header')
+);
+
+
+
+class HomeOptions extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            section: "bmi_calc"
+        };
+    }
+
+    componentDidMount() {
+        if(this.state.section == "bmi_calc")
+            document.querySelector("#bmi").style.fontWeight = "bold";
+        else if(this.state.section == "diets")
+            document.querySelector("#diet").style.fontWeight = "bold";
+        else if(this.state.section == "yoga")
+            document.querySelector("#yoga_asanas").style.fontWeight = "bold";
+        else if(this.state.section == "muscle")
+            document.querySelector("#muscle_building").style.fontWeight = "bold";
+        else
+            document.querySelector("#workout").style.fontWeight = "bold";
+    }
+
+    render() {
+        return (
+            <div id="home_options">
+                <button
+                    id="bmi_calc"
+                    onMouseEnter={() => document.querySelector("#bmi").style.fontWeight = "bold"}
+                    onMouseLeave={() => {
+                        if(this.state.section != "bmi_calc")
+                            document.querySelector("#bmi").style.fontWeight = "normal";
+                    }}>
+                        <p id="bmi" className="home_options_text">BMI Calculator</p>
+                </button>
+
+                <button 
+                    id="diets"
+                    onMouseEnter={() => document.querySelector("#diet").style.fontWeight = "bold"}
+                    onMouseLeave={() => {
+                        if(this.state.section != "diets")
+                            document.querySelector("#diet").style.fontWeight = "normal";
+                    }}>
+                        <p id="diet" className="home_options_text">Diets</p>
+                </button>
+
+                <button 
+                    id="yoga"
+                    onMouseEnter={() => document.querySelector("#yoga_asanas").style.fontWeight = "bold"}
+                    onMouseLeave={() => {
+                        if(this.state.section != "yoga")
+                            document.querySelector("#yoga_asanas").style.fontWeight = "normal";
+                    }}>
+                        <p id="yoga_asanas" className="home_options_text">Yoga-Asanas</p>
+                </button>
+
+                <button 
+                    id="muscle"
+                    onMouseEnter={() => document.querySelector("#muscle_building").style.fontWeight = "bold"}
+                    onMouseLeave={() => {
+                        if(this.state.section != "muscle")
+                            document.querySelector("#muscle_building").style.fontWeight = "normal";
+                    }}>
+                        <p id="muscle_building" className="home_options_text">Muscle-Building</p>
+                </button>
+                
+                <button
+                    id="workout_vids"
+                    onMouseEnter={() => document.querySelector("#workout").style.fontWeight = "bold"}
+                    onMouseLeave={() => {
+                        if(this.state.section != "workout_vids")
+                            document.querySelector("#workout").style.fontWeight = "normal";
+                    }}>
+                        <p id="workout" className="home_options_text">Workout Videos</p>
+                </button>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <HomeOptions/>,
+    document.querySelector("#homeoptions_")
+);
+
+
+        </script>
+    </body>
+</html>
